@@ -1,4 +1,4 @@
-# Graph
+# Graph - Data Structure
 
 ## Terminologies
   - v - vertex

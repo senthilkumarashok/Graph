@@ -2,9 +2,9 @@
 
 ## Terminologies
   - G(V,E) - Graph is a set of Vertices V and set of edges E
-  - v - node is a indivisible point on a graph
-  - e(u,v) - edge connects vertex u and vertex v together
-  - d(v) - degree of the vertex is the count of edges connected to the vertex v
+  - Vertex(v) - node is a indivisible point on a graph
+  - Edge(u,v) - connects vertex u and vertex v together
+  - Degree d(v) of vertex v, is the count of edges connected to the vertex v
   
   
 ## Representation 

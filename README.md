@@ -9,7 +9,7 @@
   
 ## Representation 
  Graph can be represented by following three approaches
-  - edge List
-  - adjacency List
-  - adjeacency Matrix
+  - Edge List
+  - Adjacency List
+  - Adjacency Matrix
   

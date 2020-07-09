@@ -25,8 +25,7 @@ class UnDirectedGraph<T> implements Graph<T> {
         idToVertextMap.get(v).adjacents.add(idToVertextMap.get(u));        
     }
 
-    public void dfs() {
-        System.out.println("Traversing Graph through DFS");
+    public void dfs() {        
         List<T> output = new LinkedList<>();
         int i = 0;
         Stack<Vertex> stack = new Stack();
@@ -45,12 +44,12 @@ class UnDirectedGraph<T> implements Graph<T> {
                 }
             }
         }
-        System.out.println(output);
+        System.out.println("DFS Output : "+output);
     }
 
     public void bfs() {
         
-
+        System.out.println("BFS Output : "+output);
     }
 
     public boolean hasVertex(T v) {        

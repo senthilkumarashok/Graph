@@ -6,7 +6,7 @@ class UnDirectedGraph implements Graph {
     private Map<Integer, Vertex> idToVertextMap;
 
     public UnDirectedGraph() {
-        this.vertices = new HashSet<>();
+        this.vertices = new LinkedHashSet<>();
         this.idToVertextMap = new HashMap<>();
     }
 
@@ -25,16 +25,23 @@ class UnDirectedGraph implements Graph {
         }
         idToVertextMap.get(u).adjacents.add(idToVertextMap.get(v));
         idToVertextMap.get(v).adjacents.add(idToVertextMap.get(u));        
-    }
-
-    public void print() {
-        for(Vertex vertex : vertices) {
-            System.out.println(vertex);
-        }
-    }
+    }    
 
     public void dfs() {
-
+        System.out.println("Traversing Graph through DFS");
+        Stack<Vertex> stack = new Stack();
+        Map<Integer, Boolean> vertexIdToVisitedMap = new HashMap<>();
+        stack.push(vertices.iterator().next());
+        while(!stack.isEmpty()) {
+            Vertex vertex = stack.pop();
+            vertexIdToVisitedMap.put(vertex.id, Boolean.TRUE);
+            System.out.println(vertex);
+            for(Vertex adjacentVertex : vertex.adjacents) {                
+                if(!vertexIdToVisitedMap.getOrDefault(adjacentVertex.id, Boolean.FALSE)) {
+                    stack.push(adjacentVertex);
+                }
+            }
+        }
     }
 
     public void bfs() {
@@ -53,7 +60,7 @@ class UnDirectedGraph implements Graph {
             this.adjacents = new LinkedHashSet<>();
         }
         public String toString() {
-            return "Vertex with id "+ id;
+            return "Vertex with id : "+ id;
         }        
     }
 }

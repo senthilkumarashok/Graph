@@ -27,6 +27,12 @@ class UnDirectedGraph implements Graph {
         idToVertextMap.get(v).adjacents.add(idToVertextMap.get(u));        
     }
 
+    public void print() {
+        for(Vertex vertex : vertices) {
+            System.out.println(vertex);
+        }
+    }
+
     public void dfs() {
 
     }
@@ -45,6 +51,9 @@ class UnDirectedGraph implements Graph {
         public Vertex(int id) {
             this.id = id;
             this.adjacents = new LinkedHashSet<>();
+        }
+        public String toString() {
+            return "Vertex with id "+ id;
         }        
     }
 }

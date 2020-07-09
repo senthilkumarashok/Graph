@@ -10,22 +10,20 @@ class UnDirectedGraph<T> implements Graph<T> {
         this.idToVertextMap = new HashMap<>();
     }
 
-    public void addVertex(T t) {
+    public boolean addVertex(T t) {
+        if(hasVertex(t)) return false;
         Vertex vertex = new Vertex(t);
         vertices.add(vertex);
         idToVertextMap.put(t, vertex);
+        return false;
     }
 
     public void addEdge(T u, T v) {
-        if(!hasVertex(u)) { 
-            addVertex(u); 
-        }
-        if(!hasVertex(v)) { 
-            addVertex(v); 
-        }
+        addVertex(u); 
+        addVertex(v);         
         idToVertextMap.get(u).adjacents.add(idToVertextMap.get(v));
         idToVertextMap.get(v).adjacents.add(idToVertextMap.get(u));        
-    }    
+    }
 
     public void dfs() {
         System.out.println("Traversing Graph through DFS");
@@ -34,11 +32,14 @@ class UnDirectedGraph<T> implements Graph<T> {
         stack.push(vertices.iterator().next());
         while(!stack.isEmpty()) {
             Vertex<T> vertex = stack.pop();
-            vertexIdToVisitedMap.put(vertex.id, Boolean.TRUE);
-            System.out.println(vertex);
-            for(Vertex adjacentVertex : vertex.adjacents) {                
-                if(!vertexIdToVisitedMap.getOrDefault(adjacentVertex.id, Boolean.FALSE)) {
-                    stack.push(adjacentVertex);
+            if(!vertexIdToVisitedMap.getOrDefault(vertex.id, Boolean.FALSE)) {
+                vertexIdToVisitedMap.put(vertex.id, Boolean.TRUE);
+                System.out.println(vertex);
+                for(Vertex adjacentVertex : vertex.adjacents) {                
+                    if(!vertexIdToVisitedMap.getOrDefault(adjacentVertex.id, Boolean.FALSE)) {
+                        // System.out.println("Adding to stack for vertex: " + vertex.id + " adjacent: " + adjacentVertex.id);
+                        stack.push(adjacentVertex);                    
+                    }
                 }
             }
         }
@@ -61,7 +62,7 @@ class UnDirectedGraph<T> implements Graph<T> {
             this.adjacents = new LinkedHashSet<>();
         }
         public String toString() {
-            return "Vertex with id : "+ id;
+            return "Vertex with id : "+ id + " adjacents : "+ adjacents.size();
         }        
     }
 

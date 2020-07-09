@@ -2,10 +2,16 @@ class Main {
 
     public static void main(String[] args) {
         Graph g = new UnDirectedGraph();
-        g.addEdge(2,3);
-        g.addEdge(1,3);
-        g.addVertex(4);
-        g.addEdge(4,2);
+        g.addEdge("A","B");
+        g.addEdge("A","C");
+        g.addEdge("A","D");
+        g.addEdge("B","E");
+        g.addEdge("B","F");
+        g.addEdge("H","G");
+        g.addEdge("H","D");
+        g.addEdge("H","E");
+        g.addEdge("H","F");
+        g.addEdge("G","C");
         g.dfs();
     }
 }

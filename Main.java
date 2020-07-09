@@ -13,5 +13,6 @@ class Main {
         g.addEdge("H","F");
         g.addEdge("G","C");
         g.dfs();
+        g.bfs();
     }
 }

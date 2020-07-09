@@ -27,14 +27,16 @@ class UnDirectedGraph<T> implements Graph<T> {
 
     public void dfs() {
         System.out.println("Traversing Graph through DFS");
+        List<T> output = new LinkedList<>();
+        int i = 0;
         Stack<Vertex> stack = new Stack();
         Map<T, Boolean> vertexIdToVisitedMap = new HashMap<>();
         stack.push(vertices.iterator().next());
         while(!stack.isEmpty()) {
             Vertex<T> vertex = stack.pop();
             if(!vertexIdToVisitedMap.getOrDefault(vertex.id, Boolean.FALSE)) {
-                vertexIdToVisitedMap.put(vertex.id, Boolean.TRUE);
-                System.out.println(vertex);
+                vertexIdToVisitedMap.put(vertex.id, Boolean.TRUE);                
+                output.add(vertex.id);
                 for(Vertex adjacentVertex : vertex.adjacents) {                
                     if(!vertexIdToVisitedMap.getOrDefault(adjacentVertex.id, Boolean.FALSE)) {
                         // System.out.println("Adding to stack for vertex: " + vertex.id + " adjacent: " + adjacentVertex.id);
@@ -43,9 +45,11 @@ class UnDirectedGraph<T> implements Graph<T> {
                 }
             }
         }
+        System.out.println(output);
     }
 
     public void bfs() {
+        
 
     }
 

@@ -1,7 +1,6 @@
-interface Graph {
+interface Graph<T> {
    
-  void addVertex(int t);
-  void addEdge(int t1, int t2);
-  void dfs();
-  boolean hasEdge()
+  void addVertex(T t);
+  void addEdge(T t1, T t2);
+  void dfs();  
 }

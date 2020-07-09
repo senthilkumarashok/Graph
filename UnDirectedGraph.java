@@ -1,22 +1,22 @@
 import java.util.*;
 
-class UnDirectedGraph implements Graph {
+class UnDirectedGraph<T> implements Graph<T> {
 
     private Set<Vertex> vertices;
-    private Map<Integer, Vertex> idToVertextMap;
+    private Map<T, Vertex> idToVertextMap;
 
     public UnDirectedGraph() {
         this.vertices = new LinkedHashSet<>();
         this.idToVertextMap = new HashMap<>();
     }
 
-    public void addVertex(int t) {
+    public void addVertex(T t) {
         Vertex vertex = new Vertex(t);
         vertices.add(vertex);
-        idToVertextMap.put(Integer.valueOf(t), vertex);
+        idToVertextMap.put(t, vertex);
     }
 
-    public void addEdge(int u, int v) {
+    public void addEdge(T u, T v) {
         if(!hasVertex(u)) { 
             addVertex(u); 
         }
@@ -30,10 +30,10 @@ class UnDirectedGraph implements Graph {
     public void dfs() {
         System.out.println("Traversing Graph through DFS");
         Stack<Vertex> stack = new Stack();
-        Map<Integer, Boolean> vertexIdToVisitedMap = new HashMap<>();
+        Map<T, Boolean> vertexIdToVisitedMap = new HashMap<>();
         stack.push(vertices.iterator().next());
         while(!stack.isEmpty()) {
-            Vertex vertex = stack.pop();
+            Vertex<T> vertex = stack.pop();
             vertexIdToVisitedMap.put(vertex.id, Boolean.TRUE);
             System.out.println(vertex);
             for(Vertex adjacentVertex : vertex.adjacents) {                
@@ -48,15 +48,15 @@ class UnDirectedGraph implements Graph {
 
     }
 
-    public boolean hasVertex(int v) {        
+    public boolean hasVertex(T v) {        
         return vertices.contains(idToVertextMap.get(v));
     }
 
-    private class Vertex {
-        private int id;
+    private class Vertex<T> {
+        private T id;
         Set<Vertex> adjacents;
 
-        public Vertex(int id) {
+        public Vertex(T id) {
             this.id = id;
             this.adjacents = new LinkedHashSet<>();
         }

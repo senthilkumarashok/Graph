@@ -55,6 +55,7 @@ class UnDirectedGraph implements Graph {
     private class Vertex {
         private int id;
         Set<Vertex> adjacents;
+
         public Vertex(int id) {
             this.id = id;
             this.adjacents = new LinkedHashSet<>();
@@ -62,5 +63,15 @@ class UnDirectedGraph implements Graph {
         public String toString() {
             return "Vertex with id : "+ id;
         }        
+    }
+
+    private class Edge {
+        private Vertex sourceVertex;
+        private Vertex targetVertex;
+
+        public Edge(int sourceId, Vertex targetId) {
+            this.sourceVertex = sourceVertex;
+            this.targetVertex = targetVertex;
+        }
     }
 }

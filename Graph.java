@@ -1,6 +1,6 @@
-interface Graph<T> {
+interface Graph {
    
-  void addVertex(T t);
-  void addEdge(T t1, Tt2);
+  void addVertex(int t);
+  void addEdge(int t1, int t2);
 
 }

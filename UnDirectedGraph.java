@@ -1,43 +1,30 @@
-import java.util.
+import java.util.*;
 
-class UnDirectedGraph<T> implements Graph<T> {
-
-    private class Vertex {
-        private int id;
-        public Vertex(int id) {
-            this.t = t;
-            this.adjacents = new LinkedHashSet<>();
-        }
-
-        List<Vertex> adjacents;
-    }
+class UnDirectedGraph implements Graph {
 
     private Set<Vertex> vertices;
-    private Map<Integer, Vertex> lookUp;
+    private Map<Integer, Vertex> idToVertextMap;
 
     public UnDirectedGraph() {
         this.vertices = new HashSet<>();
-        this.lookUp = new HashMap<>();
+        this.idToVertextMap = new HashMap<>();
     }
 
     public void addVertex(int t) {
-        Vertex vertex = new Vertex<>(t);
+        Vertex vertex = new Vertex(t);
         vertices.add(vertex);
-        lookUp.put(Integer.valueOf(int), vertex);
+        idToVertextMap.put(Integer.valueOf(t), vertex);
     }
 
     public void addEdge(int u, int v) {
-        Vertex vertex1 = lookUp.get(u);
-        Vertex vertex2 = lookUp.get(u);
         if(!hasVertex(u)) { 
-            vertex1 = addVertex(u); 
+            addVertex(u); 
         }
         if(!hasVertex(v)) { 
-            vertex2 = addVertex(v); 
+            addVertex(v); 
         }
-        vertex1.adjacents.add(vertex2);
-        vertex2.adjacents.add(vertex1);
-        
+        idToVertextMap.get(u).adjacents.add(idToVertextMap.get(v));
+        idToVertextMap.get(v).adjacents.add(idToVertextMap.get(u));        
     }
 
     public void dfs() {
@@ -48,7 +35,16 @@ class UnDirectedGraph<T> implements Graph<T> {
 
     }
 
-    public boolean hasVertex(T v) {        
-        return vertices.contains(lookUp.get(v));
+    public boolean hasVertex(int v) {        
+        return vertices.contains(idToVertextMap.get(v));
+    }
+
+    private class Vertex {
+        private int id;
+        Set<Vertex> adjacents;
+        public Vertex(int id) {
+            this.id = id;
+            this.adjacents = new LinkedHashSet<>();
+        }        
     }
 }

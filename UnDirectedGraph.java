@@ -44,11 +44,27 @@ class UnDirectedGraph<T> implements Graph<T> {
                 }
             }
         }
-        System.out.println("DFS Output : "+output);
+        System.out.println("DFS Output : "+ output);
     }
 
     public void bfs() {
-        
+        List<T> output = new LinkedList<>();
+        Map<T, Boolean> vertexIdToVisitedMap = new HashMap<>();
+        Queue<Vertex> queue = new LinkedList<>();
+        queue.add(vertices.iterator().next());
+        while(!queue.isEmpty()) {
+            Vertex<T> vertex = queue.poll();
+            if(!vertexIdToVisitedMap.getOrDefault(vertex.id, Boolean.FALSE)) {
+                vertexIdToVisitedMap.put(vertex.id, Boolean.TRUE);                
+                output.add(vertex.id);
+                for(Vertex adjacentVertex : vertex.adjacents) {                
+                    if(!vertexIdToVisitedMap.getOrDefault(adjacentVertex.id, Boolean.FALSE)) {
+                        // System.out.println("Adding to stack for vertex: " + vertex.id + " adjacent: " + adjacentVertex.id);
+                        queue.add(adjacentVertex);                    
+                    }
+                }
+            }
+        }
         System.out.println("BFS Output : "+output);
     }
 
